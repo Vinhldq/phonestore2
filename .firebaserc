@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "phonestore-9d524": {
+      "hosting": {
+        "phonestore": [
+          "phonestore-9d524"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "phonestore-9d524"
+  }
+}

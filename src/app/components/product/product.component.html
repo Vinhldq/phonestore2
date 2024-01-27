@@ -1,0 +1,52 @@
+<!-- <div class="opacity"></div> -->
+  <div class="isDistributor">
+    <div id="hero-image-banner">
+      <div class="heading-box">
+        <img
+          src="https://images.marketamerica.com/creative/2023/shop-usa-108220-shop-week-promo-hub-landing-page/shop-week-logo.svg"
+          alt="VSshop week logo"
+          class="shop-logo"
+        />
+        <h1>OUR MOST THRILLING SALE EVENT</h1>
+        <h2>OF THE YEAR!</h2>
+      </div>
+    </div>
+    <div style="display: flex; justify-content: center">
+      <h2 style="font-weight: 800">List Item</h2>
+    </div>
+
+    <!-- Product listings will go here -->
+    <div class="items">
+      @for (product of fbService.prodList; track product; let i = $index){
+        <tui-island class="w3-card item">
+          <img
+            class="tui-island__image"
+            style="border-radius: 12px; width: 100%; height: 200px"
+            [src]="product['image']"
+          />
+          <h3 class="tui-island__title" style="margin-top: 5px">
+            {{ product["name"] }}
+          </h3>
+
+          <p class="tui-island__paragraph">{{ product["description"] }}</p>
+
+          <div style="display: flex; justify-content: space-between">
+            <p style="font-weight: 400; color: #9c9b9b; text-align: center">
+              Price: $ {{ product["price"] }}
+            </p>
+            <p class="tui-island__paragraph tui-island__paragraph_link">
+              <button
+                tuiButton
+                type="button"
+                class="tui-space_right-3 tui-space_bottom-3"
+                size="s"
+                (click)="fbService.addCart(product)"
+              >
+                Add to cart
+              </button>
+            </p>
+          </div>
+        </tui-island>
+      }
+    </div>
+  </div>

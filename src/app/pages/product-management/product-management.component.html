@@ -1,0 +1,64 @@
+<table class="tui-table" style="width: 100%; overflow-x: auto">
+  <tbody>
+  <tr class="tui-table__tr tui-table__tr_border_none">
+    <th class="tui-table__th">Name</th>
+    <th class="tui-table__th">Price</th>
+    <th class="tui-table__th">Description</th>
+    <th class="tui-table__th">Image</th>
+    <th class="tui-table__th">Quantity</th>
+    <th class="tui-table__th">Edit</th>
+    <th class="tui-table__th tui-table__th_last">Delete</th>
+  </tr>
+    @for (item of fbService.prodList;track item){
+      <tr class="tui-table__tr tui-table__tr_border_none">
+        <td class="tui-table__td">{{ item["name"] }}</td>
+        <td class="tui-table__td">{{ item["price"] }}</td>
+        <td class="tui-table__td" style="overflow-x: auto">
+          {{ item["description"] }}
+        </td>
+        <td class="tui-table__td" style="overflow-x: auto">
+          {{ item["image"] }}
+        </td>
+        <td class="tui-table__td">{{ item["quantity"] }}</td>
+        <td class="tui-table__td">
+          <button
+            (click)="this.showUpdateDialog(item)"
+            tuiIconButton
+            type="button"
+            class="tui-space_right-3 tui-space_bottom-3"
+            icon="tuiIconEdit"
+            [size]="'s'"
+          ></button>
+        </td>
+        <td class="tui-table__td tui-table__td_last">
+          <button
+            (click)="delete(item)"
+            tuiIconButton
+            type="button"
+            class="tui-space_right-3 tui-space_bottom-3"
+            icon="tuiIconTrash"
+            [size]="'s'"
+          ></button>
+        </td>
+      </tr>
+    }
+  </tbody>
+</table>
+<ng-template
+  [tuiDialogOptions]="{ label: 'Update Item', size: 's' }"
+  [(tuiDialog)]="this.openUpdateDialog"
+>
+  <form [formGroup]="updateForm" (ngSubmit)="update()">
+    <p><tui-input formControlName="id"> </tui-input></p>
+    <p><tui-input formControlName="name"> </tui-input></p>
+    <p><tui-input formControlName="price"> </tui-input></p>
+    <p><tui-input formControlName="description"> </tui-input></p>
+    <p><tui-input formControlName="image"> </tui-input></p>
+    <p><tui-input formControlName="quantity"> </tui-input></p>
+    <p>
+      <button tuiButton type="submit" [disabled]="this.updateForm.invalid">
+        Update
+      </button>
+    </p>
+  </form>
+</ng-template>

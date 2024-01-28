@@ -1,14 +1,13 @@
 import { Injectable } from '@angular/core';
-import firebase from "firebase/compat";
-import {GoogleAuthProvider, signInWithPopup,signOut } from "firebase/auth";
-import {Auth} from "@angular/fire/auth";
+import firebase from 'firebase/compat';
+import { GoogleAuthProvider, signInWithPopup, signOut } from 'firebase/auth';
+import { Auth } from '@angular/fire/auth';
+import { Router } from '@angular/router';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
-
-
   constructor(private auth: Auth) {}
 
   SignInWithGoogle() {
@@ -35,7 +34,7 @@ export class AuthService {
       });
   }
 
-  SignOut() {
+  signOut() {
     signOut(this.auth)
       .then(() => {
         // Sign-out successful.
@@ -44,5 +43,4 @@ export class AuthService {
         // An error happened.
       });
   }
-
 }

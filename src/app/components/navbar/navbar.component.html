@@ -1,42 +1,13 @@
 <div class="topnav">
   <div class="left">
-    <a [routerLink]="['product']">Home</a>
+    <a tuiButton [routerLink]="['product']">Home</a>
     <a [routerLink]="['product-management']">ProductManagement</a>
-    <a (click)="fbService.add()">AddItemFirebase</a>
-    <a (click)="fbService.add()">Add new items</a>
   </div>
   <div class="right">
-
-    <button type="submit" class="btn" [routerLink]="['cart']">
-      <i class="fa fa-shopping-cart"></i>
-      Cart
-    </button>
-    <button type="submit" class="btn" (click)="signOut()">
-      <i class="fa fa-sign-out"></i>
-      Signout
-    </button>
+    <a class="btn" [routerLink]="['cart']">Cart</a>
+    <a class="btn" (click)="signOut()">Signout</a>
   </div>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 <!--<dialog #appDialog>-->
 <!--  <form class="form" [formGroup]="itemform">-->
@@ -101,4 +72,3 @@
 <!--  }-->
 
 <!--</div>-->
-

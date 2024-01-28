@@ -18,6 +18,7 @@ import {Router, RouterLink} from '@angular/router';
 import { Product } from '../../models/product.models';
 import {FirebaseService} from "../../services/firebase/firebase.service";
 import {AuthService} from "../../services/auth/auth.service";
+import {TuiAvatarModule} from "@taiga-ui/kit";
 
 
 
@@ -29,7 +30,7 @@ export interface MenuItems {
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [FormsModule, ReactiveFormsModule, RouterLink],
+  imports: [FormsModule, ReactiveFormsModule, RouterLink, TuiAvatarModule],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.scss',
 })

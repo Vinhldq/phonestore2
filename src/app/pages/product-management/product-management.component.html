@@ -1,46 +1,50 @@
+<div style="margin: 10px">
+  <button tuiButton (click)="this.showAddDialog()">Add New Item</button>
+</div>
+
 <table class="tui-table" style="width: 100%; overflow-x: auto">
   <tbody>
-  <tr class="tui-table__tr tui-table__tr_border_none">
-    <th class="tui-table__th">Name</th>
-    <th class="tui-table__th">Price</th>
-    <th class="tui-table__th">Description</th>
-    <th class="tui-table__th">Image</th>
-    <th class="tui-table__th">Quantity</th>
-    <th class="tui-table__th">Edit</th>
-    <th class="tui-table__th tui-table__th_last">Delete</th>
-  </tr>
+    <tr class="tui-table__tr tui-table__tr_border_none">
+      <th class="tui-table__th">Name</th>
+      <th class="tui-table__th">Price</th>
+      <th class="tui-table__th">Description</th>
+      <th class="tui-table__th">Image</th>
+      <th class="tui-table__th">Quantity</th>
+      <th class="tui-table__th">Edit</th>
+      <th class="tui-table__th tui-table__th_last">Delete</th>
+    </tr>
     @for (item of fbService.prodList;track item){
-      <tr class="tui-table__tr tui-table__tr_border_none">
-        <td class="tui-table__td">{{ item["name"] }}</td>
-        <td class="tui-table__td">{{ item["price"] }}</td>
-        <td class="tui-table__td" style="overflow-x: auto">
-          {{ item["description"] }}
-        </td>
-        <td class="tui-table__td" style="overflow-x: auto">
-          {{ item["image"] }}
-        </td>
-        <td class="tui-table__td">{{ item["quantity"] }}</td>
-        <td class="tui-table__td">
-          <button
-            (click)="this.showUpdateDialog(item)"
-            tuiIconButton
-            type="button"
-            class="tui-space_right-3 tui-space_bottom-3"
-            icon="tuiIconEdit"
-            [size]="'m'"
-          ></button>
-        </td>
-        <td class="tui-table__td tui-table__td_last">
-          <button
-            (click)="delete(item)"
-            tuiIconButton
-            type="button"
-            class="tui-space_right-3 tui-space_bottom-3"
-            icon="tuiIconTrash"
-            [size]="'m'"
-          ></button>
-        </td>
-      </tr>
+    <tr class="tui-table__tr tui-table__tr_border_none">
+      <td class="tui-table__td">{{ item["name"] }}</td>
+      <td class="tui-table__td">{{ item["price"] }}</td>
+      <td class="tui-table__td" style="overflow-x: auto">
+        {{ item["description"] }}
+      </td>
+      <td class="tui-table__td" style="overflow-x: auto">
+        {{ item["image"] }}
+      </td>
+      <td class="tui-table__td">{{ item["quantity"] }}</td>
+      <td class="tui-table__td">
+        <button
+          (click)="this.showUpdateDialog(item)"
+          tuiIconButton
+          type="button"
+          class="tui-space_right-3 tui-space_bottom-3"
+          icon="tuiIconEdit"
+          [size]="'m'"
+        ></button>
+      </td>
+      <td class="tui-table__td tui-table__td_last">
+        <button
+          (click)="delete(item)"
+          tuiIconButton
+          type="button"
+          class="tui-space_right-3 tui-space_bottom-3"
+          icon="tuiIconTrash"
+          [size]="'m'"
+        ></button>
+      </td>
+    </tr>
     }
   </tbody>
 </table>
@@ -58,6 +62,34 @@
     <p>
       <button tuiButton type="submit" [disabled]="this.updateForm.invalid">
         Update
+      </button>
+    </p>
+  </form>
+</ng-template>
+
+<ng-template
+  [tuiDialogOptions]="{ label: 'Add Item', size: 's' }"
+  [(tuiDialog)]="this.openAddDialog"
+>
+  <form [formGroup]="addItemForm" (ngSubmit)="add()">
+    <p>
+      <tui-input formControlName="name">Name</tui-input>
+    </p>
+    <p>
+      <tui-input formControlName="price">Price</tui-input>
+    </p>
+    <p>
+      <tui-input formControlName="description"> Description </tui-input>
+    </p>
+    <p>
+      <tui-input formControlName="image"> Image </tui-input>
+    </p>
+    <p>
+      <tui-input formControlName="quantity"> Quantity </tui-input>
+    </p>
+    <p>
+      <button tuiButton type="submit" [disabled]="this.addItemForm.invalid">
+        Add
       </button>
     </p>
   </form>

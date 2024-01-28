@@ -6,10 +6,9 @@ import {
   setDoc,
   doc,
   updateDoc,
-  deleteDoc
-} from "@angular/fire/firestore";
-import {Injectable} from "@angular/core";
-
+  deleteDoc,
+} from '@angular/fire/firestore';
+import { Injectable } from '@angular/core';
 
 @Injectable({
   providedIn: 'root',
@@ -34,23 +33,24 @@ export class FirebaseService {
     });
   }
 
-  async add() {
+  async add(item: DocumentData) {
     try {
       let id = Math.floor(Math.random() * 1000).toString();
+      //using form control
       const docRef = await setDoc(doc(this.firestore, 'products', id), {
         id: id,
-        name: 'Iphone 10',
-        price: 1000,
-        description: 'Iphone 10',
-        image:
-          'https://th.bing.com/th/id/OIP.DH9BbfWK3GFAv8xTph6HsAHaKr?w=124&h=180&c=7&r=0&o=5&dpr=1.3&pid=1.7',
-        quantity: 10,
+        name: item['name'],
+        price: item['price'],
+        description: item['description'],
+        image: item['image'],
+        quantity: item['quantity'],
       });
       // console.log("Document written with ID: ", docRef.id);
     } catch (e) {
       console.error('Error adding document: ', e);
     }
   }
+
   async update(item: DocumentData) {
     await updateDoc(doc(this.firestore, 'products', item['id']), item);
   }

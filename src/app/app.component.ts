@@ -1,22 +1,19 @@
-
-import {  TUI_SANITIZER } from "@taiga-ui/core";
+import { TUI_SANITIZER } from '@taiga-ui/core';
 import { Component } from '@angular/core';
 import { Product } from './models/product.models';
-import {SharedModule} from "./modules/shared.modules";
-import {NgDompurifySanitizer} from "@tinkoff/ng-dompurify";
-import { Auth} from '@angular/fire/auth';
+import { SharedModule } from './modules/shared.modules';
+import { NgDompurifySanitizer } from '@tinkoff/ng-dompurify';
+import { Auth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
 
-import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [
-    SharedModule,
-  ],
+  imports: [SharedModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
-  providers: [{provide: TUI_SANITIZER, useClass: NgDompurifySanitizer}]
+  providers: [{ provide: TUI_SANITIZER, useClass: NgDompurifySanitizer }],
 })
 export class AppComponent {
   title = 'demo';
@@ -31,14 +28,14 @@ export class AppComponent {
         // User is signed in, see docs for a list of available properties
         // https://firebase.google.com/docs/reference/js/auth.user
         const uid = user.uid;
-        this.router.navigate(['/home']);
+        this.router.navigate(['home']);
         // ...
       } else {
-        this.router.navigate(['/login']);
+        console.log('user is not signed in');
+        this.router.navigate(['login']);
         // User is signed out
         // ...
       }
     });
   }
-
 }

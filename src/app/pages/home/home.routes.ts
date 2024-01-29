@@ -6,7 +6,9 @@ import {ProductManagementComponent} from "../product-management/product-manageme
 import {ProductDetailComponent} from "../product-detail/product-detail.component";
 
 export const HOME_ROUTES: Route[] = [
-  { path: '', component: HomeComponent,
+  {
+    path: '',
+    component: HomeComponent,
     children: [
       {
         path: 'product', component: ProductComponent, children: [
@@ -14,18 +16,20 @@ export const HOME_ROUTES: Route[] = [
             path: 'product-detail', component: ProductDetailComponent
           },
         ]
-
       },
       {
-        path: 'cart', component: CartComponent
+        path: 'cart',
+        component: CartComponent,
       },
       {
-        path: 'product-management', component: ProductManagementComponent
+        path: 'product-management',
+        component: ProductManagementComponent,
       },
-
-     {
-       path: '', redirectTo: 'product', pathMatch: 'full'
-     }
-    ]
+      {
+        path: '',
+        redirectTo: 'product',
+        pathMatch: 'full',
+      },
+    ],
   },
 ];

@@ -14,13 +14,11 @@ import {
   FormsModule,
   ReactiveFormsModule,
 } from '@angular/forms';
-import {Router, RouterLink} from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { Product } from '../../models/product.models';
-import {FirebaseService} from "../../services/firebase/firebase.service";
-import {AuthService} from "../../services/auth/auth.service";
-import {TuiAvatarModule} from "@taiga-ui/kit";
-
-
+import { FirebaseService } from '../../services/firebase/firebase.service';
+import { AuthService } from '../../services/auth/auth.service';
+import { TuiAvatarModule } from '@taiga-ui/kit';
 
 export interface MenuItems {
   name: string;
@@ -58,7 +56,11 @@ export class NavbarComponent {
       activeBtn: false,
     },
   ];
-  constructor(public fbService: FirebaseService, private authService:AuthService, private route: Router) {}
+  constructor(
+    public fbService: FirebaseService,
+    private authService: AuthService,
+    private route: Router
+  ) {}
   // listItems: Product[] = [];
   clickBtn(index: number) {
     console.log(index);
@@ -109,9 +111,7 @@ export class NavbarComponent {
     this.closeDialog();
   }
 
-
-
   signOut() {
-    this.authService.SignOut();
+    this.authService.signOut();
   }
 }
